@@ -1,3 +1,3 @@
-# Android_With_Compose_Repository
+## Android_With_Compose_Repository
 
-Money_counter -> Example to State Hoisting
+- Money_counter -> Example to State Hoisting
