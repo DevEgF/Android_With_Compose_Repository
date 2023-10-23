@@ -1,4 +1,4 @@
-package com.example.movieapp.screens
+package com.example.movieapp.screens.home
 
 import android.util.Log
 import androidx.compose.foundation.clickable
