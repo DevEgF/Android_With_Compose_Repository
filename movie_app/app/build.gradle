@@ -64,7 +64,11 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    //Navigation
     def nav_version = "2.5.3"
-
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    //ImageLoader
+    def coil_version = "2.4.0"
+    implementation "io.coil-kt:coil-compose:$coil_version"
 }
