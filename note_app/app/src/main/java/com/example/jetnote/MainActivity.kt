@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.jetnote.data.NotesDataSource
 import com.example.jetnote.screen.NoteScreen
 import com.example.jetnote.ui.theme.JetNoteTheme
 
@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApp {
                 NoteScreen(
-                    notes = emptyList(),
+                    notes = NotesDataSource().loadNote(),
                     onAddNote = {},
                     onRemoveNote = {}
                 )
