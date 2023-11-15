@@ -13,9 +13,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                NoteScreen()
+                NoteScreen(
+                    notes = emptyList(),
+                    onAddNote = {},
+                    onRemoveNote = {}
+                )
             }
-
         }
     }
 }
@@ -24,13 +27,5 @@ class MainActivity : ComponentActivity() {
 fun MyApp(content: @Composable () -> Unit) {
     JetNoteTheme {
         content()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    JetNoteTheme {
-        NoteScreen()
     }
 }
