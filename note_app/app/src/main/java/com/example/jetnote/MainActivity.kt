@@ -4,19 +4,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import com.example.jetnote.data.NotesDataSource
-import com.example.jetnote.screen.NoteScreen
-import com.example.jetnote.ui.theme.JetNoteTheme
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
+import com.example.jetnote.data.model.Note
+import com.example.jetnote.presentation.screen.NoteScreen
+import com.example.jetnote.presentation.ui.theme.JetNoteTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
+                val notes = remember {
+                    mutableStateListOf<Note>()
+                }
+
                 NoteScreen(
-                    notes = NotesDataSource().loadNote(),
-                    onAddNote = {},
-                    onRemoveNote = {}
+                    notes = notes,
+                    onAddNote = {
+                        notes.add(it)
+                    },
+                    onRemoveNote = {
+                        notes.remove(it)
+                    }
                 )
             }
         }

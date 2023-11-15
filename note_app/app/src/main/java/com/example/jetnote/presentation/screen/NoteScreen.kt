@@ -1,5 +1,6 @@
-package com.example.jetnote.screen
+package com.example.jetnote.presentation.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,14 +27,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetnote.R
-import com.example.jetnote.components.NoteButton
-import com.example.jetnote.components.NoteInputText
-import com.example.jetnote.data.NotesDataSource
-import com.example.jetnote.model.Note
+import com.example.jetnote.presentation.components.NoteButton
+import com.example.jetnote.presentation.components.NoteInputText
+import com.example.jetnote.data.datasource.NotesDataSource
+import com.example.jetnote.data.model.Note
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,6 +52,7 @@ fun NoteScreen(
     var description by remember {
         mutableStateOf("")
     }
+    val context = LocalContext.current
 
     Column(modifier = Modifier.padding(6.dp)) {
         TopAppBar(
@@ -85,18 +88,32 @@ fun NoteScreen(
                 }
             )
 
-            NoteButton(text = "Save",
+            NoteButton(
+                text = "Save",
                 onClick = {
                     if (title.isNotEmpty() && description.isNotEmpty()) {
+                        onAddNote(
+                            Note(
+                                title = title,
+                                description = description,
+                            )
+                        )
                         title = ""
                         description = ""
+                        Toast.makeText(context, "Note Added", Toast.LENGTH_LONG).show()
                     }
-                })
+                },
+            )
         }
         Divider(modifier = Modifier.padding(20.dp))
         LazyColumn {
-            items(notes) {
-                NoteRow(note = it, onNoteClicked = {})
+            items(notes) { note ->
+                NoteRow(
+                    note = note,
+                    onNoteClicked = {
+                        onRemoveNote(note)
+                    },
+                )
             }
         }
     }
@@ -117,7 +134,7 @@ fun NoteRow(
         tonalElevation = 6.dp
     ) {
         Column(modifier = Modifier
-            .clickable { }
+            .clickable { onNoteClicked(note) }
             .padding(horizontal = 14.dp, vertical = 6.dp),
             horizontalAlignment = Alignment.Start) {
 

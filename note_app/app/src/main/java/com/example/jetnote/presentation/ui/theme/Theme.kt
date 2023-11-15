@@ -1,4 +1,4 @@
-package com.example.jetnote.ui.theme
+package com.example.jetnote.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

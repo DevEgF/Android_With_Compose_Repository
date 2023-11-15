@@ -1,6 +1,6 @@
-package com.example.jetnote.data
+package com.example.jetnote.data.datasource
 
-import com.example.jetnote.model.Note
+import com.example.jetnote.data.model.Note
 
 class NotesDataSource {
     fun loadNote(): List<Note>{

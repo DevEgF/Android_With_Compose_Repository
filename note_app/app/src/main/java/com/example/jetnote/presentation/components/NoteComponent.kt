@@ -1,4 +1,4 @@
-package com.example.jetnote.components
+package com.example.jetnote.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

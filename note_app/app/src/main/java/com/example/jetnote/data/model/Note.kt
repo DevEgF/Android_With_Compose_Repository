@@ -1,4 +1,4 @@
-package com.example.jetnote.model
+package com.example.jetnote.data.model
 
 import java.time.LocalDateTime
 import java.util.UUID
